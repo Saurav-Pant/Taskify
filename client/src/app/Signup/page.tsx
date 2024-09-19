@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import Spinner from "@/components/LoadingSpinner";
@@ -16,6 +16,15 @@ const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const Backend_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+  useEffect(() => {
+    if (isLoading) {
+      toast.info(
+        "Please wait, the backend is hosted on Render so it may take time to execute due to lower CPU performance.",
+        { autoClose: 5000 } 
+      );
+    }
+  }, [isLoading]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -51,7 +60,7 @@ const Page = () => {
   };
 
   return (
-    <div className="h-screen ">
+    <div className="h-screen">
       <div className="absolute top-4 left-4">
         <BackButton />
       </div>
