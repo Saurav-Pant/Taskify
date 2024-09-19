@@ -8,6 +8,8 @@ import Column from "./Column";
 import { TaskType } from "../types";
 import Cookies from "js-cookie";
 import useToken from "@/Hooks/useToken";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Terminal } from "lucide-react";
 
 const TaskDashboard: React.FC = () => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
@@ -72,7 +74,25 @@ const TaskDashboard: React.FC = () => {
                 Hello, <span className="text-orange-500">{name}!</span>
               </h1>
             </div>
+
+            <div className="mt-12 mx-auto hover:shadow-md transition-all duration-300 ease-in-out w-fit">
+              <Alert className="flex justify-center items-center">
+                <Terminal className="h-4 w-4 mr-2" />
+                <div>
+                  <AlertTitle>Note:</AlertTitle>
+                  <AlertDescription>
+                    Please be patient while dragging and dropping. The backend
+                    is on
+                    <span className="text-orange-500 px-1 font-bold">
+                     Render,
+                     </span>
+                      so it might be a bit slower.
+                  </AlertDescription>
+                </div>
+              </Alert>
+            </div>
           </div>
+
           <div className="mb-8 flex justify-between items-center py-6 px-4"></div>
           <div className="flex-grow bg-white overflow-x-auto">
             <div className="flex gap-4 h-full justify-center">
