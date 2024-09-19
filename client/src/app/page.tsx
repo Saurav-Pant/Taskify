@@ -6,26 +6,21 @@ import Image from "next/image";
 import { BorderBeam } from "@/components/ui/border-beam";
 import Preview from "../../Assets/Preview.png";
 import ShimmerButton from "@/components/ui/shimmer-button";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import useToken from "@/Hooks/useToken";
 
 const Hero = () => {
-  const token = Cookies.get("token");
-
+  const { token } = useToken();
   const router = useRouter();
 
   if (!token) {
     router.push("/");
   }
 
-  if (token) {
-    router.push("/Dashboard");
-  }
-
   return (
-    <>
+    <div>
       <Navbar />
       <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 my-24 ">
         <h1 className="max-w-4xl text-5xl md:text-6xl lg:text-6xl font-bold mb-4 sm:mb-5 text-center mt-4">
@@ -39,10 +34,16 @@ const Hero = () => {
           Taskify lets you easily manage your tasks and drag and drop them
           between statuses. Stay organized and get things done seamlessly.
         </p>
+        {!token ? (
+          <Link href="/Signup">
+            <ShimmerButton>Get Started</ShimmerButton>
+          </Link>
+        ) : (
+          <Link href="/Dashboard">
+            <ShimmerButton>Dashboard</ShimmerButton>
+          </Link>
+        )}
 
-        <Link href="/Signup">
-          <ShimmerButton>Get Started</ShimmerButton>
-        </Link>
         <div className="relative rounded-xl mx-2 mt-20 overflow-hidden">
           <Image
             src={Preview}
@@ -54,7 +55,7 @@ const Hero = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

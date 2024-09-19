@@ -8,8 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
-  title: "Task Management Application",
-  description: "Task Management Application",
+  title: "Taskify",
+  description: "To manage the tasks",
 };
 
 export default function RootLayout({

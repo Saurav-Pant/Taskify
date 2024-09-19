@@ -23,6 +23,7 @@ import { ItemType } from "../types";
 import Cookies from "js-cookie";
 import LoadingSpinner from "./LoadingSpinner";
 import { useRouter } from "next/navigation";
+import TaskSplashScreen from "./TaskSplashScreen";
 
 const TaskCard = ({ task }: any) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -43,6 +44,11 @@ const TaskCard = ({ task }: any) => {
       isDragging: !!monitor.isDragging(),
     }),
   }));
+
+  if (isLoading) {
+    return <TaskSplashScreen />;
+  }
+
 
   const deadline = new Date(task.deadline);
   const CreatedAt = new Date(task.createdAt);

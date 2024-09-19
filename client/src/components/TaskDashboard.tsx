@@ -6,14 +6,14 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Sidebar from "./Sidebar";
 import Column from "./Column";
 import { TaskType } from "../types";
-import { Search } from "lucide-react";
 import Cookies from "js-cookie";
+import useToken from "@/Hooks/useToken";
 
 const TaskDashboard: React.FC = () => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const [token, setToken] = useState<string | null>(null);
 
-  const name = Cookies.get("name");
+  const { userName: name } = useToken();
 
   useEffect(() => {
     const storedToken = Cookies.get("token");
@@ -61,10 +61,6 @@ const TaskDashboard: React.FC = () => {
 
   const columns = ["TODO", "INPROGRESS", "COMPLETED"];
 
-  if (!token) {
-    return <div>Please log in to view your tasks.</div>;
-  }
-
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="flex max-h-screen">
@@ -77,21 +73,7 @@ const TaskDashboard: React.FC = () => {
               </h1>
             </div>
           </div>
-          <div className="mb-8 flex justify-between items-center py-6 px-4">
-            <div className="relative mr-4 flex-grow max-w-md">
-              <div className="relative w-48">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="w-full h-10 pl-4 pr-10 py-2 rounded-lg border"
-                />
-                <Search
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                  size={20}
-                />
-              </div>
-            </div>
-          </div>
+          <div className="mb-8 flex justify-between items-center py-6 px-4"></div>
           <div className="flex-grow bg-white overflow-x-auto">
             <div className="flex gap-4 h-full justify-center">
               {columns.map((status) => (
