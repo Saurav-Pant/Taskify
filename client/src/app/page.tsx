@@ -45,11 +45,10 @@ const Hero = () => {
           </Link>
         )} */}
 
-        <ToolTip />
-        <p className="text-center text-gray-500">
-          Trusted by 100+ Folks
-        </p>
-
+        <div className="flex flex-col items-center">
+          <ToolTip />
+          <p className="text-gray-500">Trusted by 100+ Folks</p>
+        </div>
         <div className="relative rounded-xl mx-2 mt-20 overflow-hidden">
           <Image
             src={Preview}

@@ -18,14 +18,14 @@ const people = [
   },
   {
     id: 3,
-    name: "Virat",
+    name: "Monalisa",
     designation: "Data Scientist",
     image:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
   },
   {
     id: 4,
-    name: "Andrew",
+    name: "Rayna",
     designation: "UX Designer",
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
@@ -39,9 +39,9 @@ const people = [
   },
 ];
 
-export function ToolTip() {
+export function ToolTip({ className }: any) {
   return (
-    <div className="flex flex-row items-center justify-center mb-2 mt-4 w-full">
+    <div className={`flex flex-row items-center justify-center mb-2 mt-4 w-full ${className}`}>
       <AnimatedTooltip items={people} />
     </div>
   );
