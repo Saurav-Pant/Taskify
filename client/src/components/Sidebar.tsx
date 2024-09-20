@@ -104,10 +104,12 @@ const SidebarMenu = ({ className }: any) => {
 
         <nav className="flex-1 mt-3">
           <ul className="p-2">
+            <Link href="/">
             <li className="px-2 py-2 text-[#797979] hover:bg-gray-100 rounded-md cursor-pointer flex items-center">
               <Home size={18} className="mr-3" />
               Home
             </li>
+            </Link>
             <li className="px-2 py-2 text-[#797979] hover:bg-gray-100 rounded-md cursor-pointer flex items-center">
               <Layout size={18} className="mr-3" />
               Boards

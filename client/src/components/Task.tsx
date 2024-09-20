@@ -24,6 +24,8 @@ import Cookies from "js-cookie";
 import LoadingSpinner from "./LoadingSpinner";
 import { useRouter } from "next/navigation";
 import TaskSplashScreen from "./TaskSplashScreen";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TaskCard = ({ task }: any) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -48,7 +50,6 @@ const TaskCard = ({ task }: any) => {
   if (isLoading) {
     return <TaskSplashScreen />;
   }
-
 
   const deadline = new Date(task.deadline);
   const CreatedAt = new Date(task.createdAt);
@@ -96,19 +97,25 @@ const TaskCard = ({ task }: any) => {
 
       if (response.ok) {
         const updatedTask = await response.json();
-        console.log(updatedTask);
+        setEditedTask(updatedTask);
+
         setIsEditModalOpen(false);
-        window.location.reload();
+
+        toast.success("Edited Successfully! Please Wait...");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       } else {
-        console.error("Failed to update task");
+        toast.error("Failed to update task");
       }
     } catch (error) {
       console.error("Error updating task:", error);
+      toast.error("Error updating task");
     } finally {
       setIsLoading(false);
     }
   };
-
   const handleDelete = async () => {
     setIsLoading(true);
     try {
@@ -122,8 +129,12 @@ const TaskCard = ({ task }: any) => {
 
       if (response.ok) {
         console.log("Successfully deleted task");
-        window.location.reload();
-        router.refresh();
+        toast.success("Deleted Successfully!");
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+
       } else {
         console.error("Failed to delete task");
       }
@@ -223,7 +234,6 @@ const TaskCard = ({ task }: any) => {
                   setEditedTask({ ...editedTask, deadline: e.target.value })
                 }
               />
-
               <Select
                 value={editedTask.status}
                 onValueChange={(value: any) =>
@@ -249,6 +259,7 @@ const TaskCard = ({ task }: any) => {
             </Button>
           </DialogContent>
         </Dialog>
+
         <Button
           variant="ghost"
           size="icon"
