@@ -84,7 +84,7 @@ const TaskDashboard: React.FC = () => {
                     Please be patient while dragging and dropping. The backend
                     is on
                     <span className="text-orange-500 px-1 font-bold">
-                     Render,
+                     Render Free Instance,
                      </span>
                       so it might be a bit slower.
                   </AlertDescription>

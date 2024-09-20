@@ -19,7 +19,7 @@ const Page = () => {
   useEffect(() => {
     if (isLoading) {
       toast.info(
-        "Please wait, the backend is hosted on Render so it may take time to execute due to lower CPU performance.",
+        "Please wait, the backend is hosted on Render Free Instance so it may take time to execute due to lower CPU performance.",
         { autoClose: 5000 } 
       );
     }
@@ -70,7 +70,7 @@ const Page = () => {
       <div className="flex justify-center items-center h-full">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <h1 className="text-2xl font-bold mb-6 text-center">
-            Welcome to <span className="text-orange-400">YouseAI!</span>
+            Welcome to <span className="text-orange-400">Taskify!</span>
           </h1>
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <form onSubmit={handleSubmit}>

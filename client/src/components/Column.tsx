@@ -58,13 +58,13 @@ const Column: React.FC<ColumnProps> = ({ status, tasks, moveTask }) => {
       // @ts-ignore
       return priorityOrder[a.priority] - priorityOrder[b.priority];
     } else if (sortCriteria === "deadline") {
-      const dateA = new Date(a.deadline || "").getTime();
-      const dateB = new Date(b.deadline || "").getTime();
-      return dateA - dateB; 
+      const dateA = a.deadline ? new Date(a.deadline).getTime() : Infinity;
+      const dateB = b.deadline ? new Date(b.deadline).getTime() : Infinity;
+      return dateA - dateB;
     }
     return 0;
   });
-
+  
   return (
     <div
       // @ts-ignore
